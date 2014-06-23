@@ -43,7 +43,7 @@ int main(){
     std::cin >> numGrades;
     
     getGrades(numGrades);
-    letterGrade=convertToLetterGrade(98,99);
+    letterGrade=convertToLetterGrade(pointsEarnedTotal,pointsAvailableTotal);
 
     std::cout << letterGrade;
 
@@ -61,15 +61,30 @@ int main(){
 *
  ***************************************************************/
 void getGrades(int numGrades){
-    std::cout<<"num grades is" << numGrades << std::endl;
+    
+    float pointsEarned;
+    float pointsAvailable;
+    
+    for (int i=1; i<=numGrades; i++) {
+        //retrive points earned and available for each assignment
+        std::cout << std::endl;
+        std::cout << "On assignment " << i << " you earned how many points:";
+        std::cin >> pointsEarned;
+        std::cout << "  out of how many points available:";
+        std::cin >> pointsAvailable;
+        
+        //incrememt totals
+        pointsEarnedTotal+=pointsEarned;
+        pointsAvailableTotal+=pointsAvailable;
+    }
 }
 
 /**************************************************************
 * Entry:
 *
 *Exit:Will return a grade on scale A,B,C,D,F unless:
-*       -PointsEarnedTotal>PointsAvailableTotal  OR
-*       -PointsAvailableTotal = 0
+*       -pointsEarnedTotal>pointsAvailableTotal  OR
+*       -pointsAvailableTotal = 0
 *       in wich case it will return an Error Code
 *
 * Purpose:To convert pointsEarned and PointsAvailable to a Letter Grade
