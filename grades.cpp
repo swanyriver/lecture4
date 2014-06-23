@@ -52,6 +52,7 @@ int main(){
 	cout << "How many assignments did you have?";
     cin >> numGrades;
     
+    //Primary Calculations
     getGrades(numGrades);
     letterGrade=convertToLetterGrade(pointsEarnedTotal,pointsAvailableTotal);
 
@@ -59,7 +60,8 @@ int main(){
     if (letterGrade.compare(ERROR) == EQUAL) {
         cout << "something has gone wrong please launch program again" << endl;
         return -1;
-    } else {
+    }else {
+        //ouput results
         cout << "You earned a total of " << pointsEarnedTotal << " out of ";
         cout << pointsAvailableTotal << " available points" << endl;
         cout << "for a total of ";
@@ -84,14 +86,31 @@ void getGrades(int numGrades){
     
     float pointsEarned;
     float pointsAvailable;
+    bool succesfulInput;
     
     for (int i = 1; i <= numGrades; i++) {
-        //retrive points earned and available for each assignment
-        cout << endl;
-        cout << "On assignment " << i << " you earned how many points:";
-        cin >> pointsEarned;
-        cout << "  out of how many points available:";
-        cin >> pointsAvailable;
+        do{
+            succesfulInput=false;
+            
+            //retrive points earned and available for each assignment
+            cout << endl;
+            cout << "On assignment " << i << " you earned how many points:";
+            cin >> pointsEarned;
+            cout << "  out of how many points available:";
+            cin >> pointsAvailable;
+            
+            //check validity of input
+            if (pointsEarned > pointsAvailable
+                || pointsAvailable <= 0
+                || pointsEarned < 0) {
+                cout << endl << "Are you sure you entered that information correctly";
+                cout << endl << "Be sure all values are positive, and that the points available are greater than the points earned" << endl;
+            }else{
+                succesfulInput = true;
+            }
+            
+            
+        }while (!succesfulInput);
         
         //incrememt totals
         pointsEarnedTotal += pointsEarned;
@@ -114,6 +133,7 @@ string convertToLetterGrade(float pointsEarnedTotal,
                                  float pointsAvailableTotal){
     //calculate percent
     if (pointsAvailableTotal == 0  || pointsAvailableTotal<pointsEarnedTotal) {
+        //somewhat redundant check, since these cases are checked during input
         return ERROR;
     } else {
         percentEarned = pointsEarnedTotal / pointsAvailableTotal;
