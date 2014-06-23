@@ -22,7 +22,7 @@ using namespace std;
 float pointsEarnedTotal=0;
 float pointsAvailableTotal=0;
 float percentEarned;
-const string ERROR = "E";
+const string ERROR = "ERROR";
 const int EQUAL = 0; //defined by string.compare()
 
 
@@ -121,32 +121,32 @@ string convertToLetterGrade(float pointsEarnedTotal,
     
     //covert to letter grade
     if (percentEarned < 0 || percentEarned > 1) {
-       return ERROR
-    }else if (percentEarned>=98){
+        return ERROR;
+    }else if (percentEarned>=.98){
         return "A+";
-    }else if (percentEarned>=92){
+    }else if (percentEarned>=.92){
         return "A";
-    }else if (percentEarned>=90){
+    }else if (percentEarned>=.90){
         return "A-";
-    }else if (percentEarned>=88){
+    }else if (percentEarned>=.88){
         return "B+";
-    }else if (percentEarned>=82){
+    }else if (percentEarned>=.82){
         return "B";
-    }else if (percentEarned>=80){
+    }else if (percentEarned>=.80){
         return "B-";
-    }else if (percentEarned>=78){
+    }else if (percentEarned>=.78){
         return "C+";
-    }else if (percentEarned>=72){
+    }else if (percentEarned>=.72){
         return "C";
-    }else if (percentEarned>=70){
+    }else if (percentEarned>=.70){
         return "C-";
-    }else if (percentEarned>=68){
+    }else if (percentEarned>=.68){
         return "D+";
-    }else if (percentEarned>=62){
+    }else if (percentEarned>=.62){
         return "D";
-    }else if (percentEarned>=60){
+    }else if (percentEarned>=.60){
         return "D-";
-    }else if (percentEarned<60){
+    }else if (percentEarned<.60){
         return "F";
     }
     
